@@ -9,7 +9,7 @@ public class InputHandler : MonoBehaviour
 
     //Queue untuk menyimpan list command
     Queue<Command> commands = new Queue<Command>();
-
+    
     void FixedUpdate()
     {
         //Menghandle input movement
@@ -31,7 +31,7 @@ public class InputHandler : MonoBehaviour
             shootCommand.Execute();
         }
     }
-
+    
     Command InputMovementHandling()
     {
         //Check jika movement sesuai dengan key nya

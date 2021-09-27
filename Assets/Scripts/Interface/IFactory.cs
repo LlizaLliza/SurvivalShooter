@@ -4,6 +4,5 @@ using UnityEngine;
 
 public interface IFactory
 {
-    GameObject FactoryMethod(string tag);
-    void FactoryMethod(int spawnEnemy);
+    GameObject FactoryMethod(int tag);
 }

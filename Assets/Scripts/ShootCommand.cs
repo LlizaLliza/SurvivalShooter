@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootCommand : MonoBehaviour
+public class ShootCommand : Command
 {
     PlayerShooting playerShooting;
 
@@ -10,7 +10,7 @@ public class ShootCommand : MonoBehaviour
     {
         playerShooting = _playerShooting;
     }
-
+    
     public override void Execute()
     {
         //Player menembak

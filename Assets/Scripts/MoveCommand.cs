@@ -13,7 +13,7 @@ public class MoveCommand : Command
         this.h = _h;
         this.v = _v;
     }
-
+    
     //Trigger perintah movement
     public override void Execute()
     {
@@ -30,3 +30,4 @@ public class MoveCommand : Command
         playerMovement.Animating(h, v);
     }
 }
+
