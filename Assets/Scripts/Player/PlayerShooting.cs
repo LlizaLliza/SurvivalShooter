@@ -7,7 +7,7 @@ public class PlayerShooting : MonoBehaviour
     public float range = 100f;                      
 
     float timer;                                    
-    Ray shootRay;                                   
+    Ray shootRay = new Ray();                                   
     RaycastHit shootHit;                            
     int shootableMask;                             
     ParticleSystem gunParticles;                    
@@ -18,7 +18,10 @@ public class PlayerShooting : MonoBehaviour
 
     void Awake()
     {
+        //GetMask
         shootableMask = LayerMask.GetMask("Shootable");
+
+        //Mendapatkan Reference component
         gunParticles = GetComponent<ParticleSystem>();
         gunLine = GetComponent<LineRenderer>();
         gunAudio = GetComponent<AudioSource>();
@@ -29,7 +32,7 @@ public class PlayerShooting : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (Input.GetButton("Fire1") && timer >= timeBetweenBullets)
+        if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
         {
             Shoot();
         }
@@ -42,7 +45,10 @@ public class PlayerShooting : MonoBehaviour
 
     public void DisableEffects()
     {
+        //disable line renderer
         gunLine.enabled = false;
+
+        //disable light
         gunLight.enabled = false;
     }
 
@@ -50,32 +56,42 @@ public class PlayerShooting : MonoBehaviour
     {
         timer = 0f;
 
+        //play audio
         gunAudio.Play();
 
-        //gunLight.enabled = true;
+        //enable light
+        gunLight.enabled = true;
 
+        //Play gun particle
         gunParticles.Stop();
         gunParticles.Play();
 
+        //enable Line renderer dan set first position
         gunLine.enabled = true;
         gunLine.SetPosition(0, transform.position);
 
+        //Set posisi ray shoot dan direction
         shootRay.origin = transform.position;
         shootRay.direction = transform.forward;
 
+        //Lakukan raycast jika mendeteksi id nemy hit apapun
         if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
         {
+            //Lakukan raycast hit hace component Enemyhealth
             EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
 
             if (enemyHealth != null)
             {
+                //Lakukan Take Damage
                 enemyHealth.TakeDamage(damagePerShot, shootHit.point);
             }
 
+            //Set line end position ke hit position
             gunLine.SetPosition(1, shootHit.point);
         }
         else
         {
+            //set line end position ke range freom barrel
             gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
         }
     }

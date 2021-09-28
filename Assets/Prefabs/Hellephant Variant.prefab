@@ -285,6 +285,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hellephant Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: b77f122f451a2394898a24191c26107c, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: b77f122f451a2394898a24191c26107c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: b77f122f451a2394898a24191c26107c, type: 3}
       propertyPath: m_Controller
       value: 

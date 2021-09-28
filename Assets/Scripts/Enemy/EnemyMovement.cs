@@ -5,7 +5,7 @@ public class EnemyMovement : MonoBehaviour
 {
     Transform player;
     PlayerHealth playerHealth;
-    //EnemyHealth enemyHealth;
+    EnemyHealth enemyHealth;
     UnityEngine.AI.NavMeshAgent nav;
 
 
@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
 
         //Mendapatkan Reference component
         playerHealth = player.GetComponent <PlayerHealth> ();
-        //enemyHealth = GetComponent <EnemyHealth> ();
+        enemyHealth = GetComponent <EnemyHealth> ();
         nav = GetComponent <UnityEngine.AI.NavMeshAgent> ();
     }
 
@@ -24,13 +24,13 @@ public class EnemyMovement : MonoBehaviour
     void Update ()
     {
         //Memindahkan posisi player
-        //if (enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
-        //{
+        if (enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
+        {
         nav.SetDestination (player.position);
-        //}
-        //else
-        //{
-        //    nav.enabled = false;
-        //}
+        }
+        else
+        {
+            nav.enabled = false;
+        }
     }
 }
