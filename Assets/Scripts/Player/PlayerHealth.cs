@@ -20,8 +20,7 @@ public class PlayerHealth : MonoBehaviour
     PlayerShooting playerShooting;
     bool isDead;                                                
     bool damaged;                                               
-
-
+    
     void Awake()
     {
         //Mendapatkan refernce komponen
@@ -71,6 +70,19 @@ public class PlayerHealth : MonoBehaviour
         {
             Death();
         }
+    }
+
+    public void SetHealthAdjustment(int adjustmentAmount)
+    {
+        currentHealth += adjustmentAmount;
+
+        if (currentHealth > 100)
+        {
+            currentHealth = 100;
+        }
+
+        // Merubah tampilan dari health slider
+        healthSlider.value = currentHealth;
     }
 
 

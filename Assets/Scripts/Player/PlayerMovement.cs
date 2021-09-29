@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody playerRB;
     int floorMask;
     float camRayLength = 100f;
+    private float speedOriginal;
+    bool isBoosted;
 
     private void Awake()
     {
@@ -74,5 +76,23 @@ public class PlayerMovement : MonoBehaviour
     {
         bool walking = h != 0f || v != 0f;
         anim.SetBool("IsWalking", walking);
+    }
+
+    public void SetSpeedBoostOn(float speedMultiplier)
+    {
+        if (isBoosted == false)
+        {
+            speedOriginal = speed;
+            speed *= speedMultiplier;
+            isBoosted = true;
+        }
+
+        Invoke("SetSpeedBoostOff", 2f);
+    }
+
+    void SetSpeedBoostOff()
+    {
+        isBoosted = false;
+        speed = speedOriginal;
     }
 }
