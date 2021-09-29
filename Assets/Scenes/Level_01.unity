@@ -233,7 +233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 1812141665}
   warningText: {fileID: 659391835}
-  restartDelay: 5
 --- !u!95 &28822942
 Animator:
   serializedVersion: 3

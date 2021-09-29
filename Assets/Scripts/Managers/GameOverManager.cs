@@ -6,10 +6,8 @@ public class GameOverManager : MonoBehaviour
 {
     public PlayerHealth playerHealth;
     public Text warningText;
-    public float restartDelay = 5f;
 
     Animator anim;
-    float restartTimer;
 
     void Awake()
     {
@@ -17,6 +15,21 @@ public class GameOverManager : MonoBehaviour
     }
     
     void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+            Debug.Log("out apk");
+        }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        ShowGameOver();
+    }
+
+    void ShowGameOver()
     {
         if (playerHealth.currentHealth <= 0)
         {

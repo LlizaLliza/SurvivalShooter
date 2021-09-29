@@ -81,7 +81,7 @@ public class EnemyHealth : MonoBehaviour
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
 
-        int randomDrop = Random.Range(0, 2);
+        int randomDrop = Random.Range(0, 5);
 
         Drop(randomDrop);
     }

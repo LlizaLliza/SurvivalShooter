@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     AudioSource playerAudio;
     PlayerMovement playerMovement;
     PlayerShooting playerShooting;
+    InputHandler inputHandler;
     bool isDead;                                                
     bool damaged;                                               
     
@@ -28,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
         playerMovement = GetComponent<PlayerMovement>();
         playerShooting = GetComponentInChildren<PlayerShooting>();
-
+        inputHandler = GetComponent<InputHandler>();
         currentHealth = startingHealth;
     }
 
@@ -104,11 +105,8 @@ public class PlayerHealth : MonoBehaviour
 
         //mematikan script player shooting
         playerShooting.enabled = false;
-    }
 
-    public void RestartLevel()
-    {
-        //meload ulang scene dengan index 0 pada build setting
-        SceneManager.LoadScene(0);
+        //mematikan script input handler
+        inputHandler.enabled = false;
     }
 }

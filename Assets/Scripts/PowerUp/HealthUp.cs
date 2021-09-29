@@ -10,6 +10,7 @@ public class HealthUp : MonoBehaviour
     private void Awake()
     {
         transform.Translate(0, 0.5f, 0);
+        StartCoroutine(Gone(7.5f));
     }
 
     void OnTriggerEnter(Collider other)
@@ -17,16 +18,10 @@ public class HealthUp : MonoBehaviour
         PowerUpCollected(other.gameObject);
     }
 
-    private void Update()
-    {
-        transform.Rotate(new Vector3(0, 50, 0) * Time.deltaTime);
-    }
-
     void PowerUpCollected(GameObject gameObjectCollectingPowerUp)
     {
         playerHealth = gameObjectCollectingPowerUp.GetComponent<PlayerHealth>();
-
-        // We only care if we've been collected by the player
+        
         if (gameObjectCollectingPowerUp.tag == "Player")
         {
             playerHealth.SetHealthAdjustment(healthBonus);
@@ -35,5 +30,11 @@ public class HealthUp : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator Gone(float second)
+    {
+        yield return new WaitForSeconds(second);
+        Destroy(gameObject);
     }
 }

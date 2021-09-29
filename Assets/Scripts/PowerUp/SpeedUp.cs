@@ -10,18 +10,14 @@ public class SpeedUp : MonoBehaviour
     private void Awake()
     {
         transform.Translate(0, 0.5f, 0);
+        StartCoroutine(Gone(7.5f));
     }
 
     void OnTriggerEnter(Collider other)
     {
         PowerUpCollected(other.gameObject);
     }
-
-    private void Update()
-    {
-        transform.Rotate(new Vector3(0, 50, 0) * Time.deltaTime);
-    }
-
+    
     void PowerUpCollected(GameObject gameObjectCollectingPowerUp)
     {
         playerMovement = gameObjectCollectingPowerUp.GetComponent<PlayerMovement>();
@@ -35,5 +31,11 @@ public class SpeedUp : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator Gone(float second)
+    {
+        yield return new WaitForSeconds(second);
+        Destroy(gameObject);
     }
 }
